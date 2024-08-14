@@ -1,0 +1,7 @@
+services:
+  traefik:
+    command:
+      - "--api.insecure=true"  # Enable dashboard without authentication for local development
+    ports:
+      - "8080:8080"  # Expose Traefik dashboard on port 8080 locally
+

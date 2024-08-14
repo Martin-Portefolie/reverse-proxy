@@ -1,0 +1,21 @@
+networks:
+  traefik-net:
+    external: true
+
+services:
+  traefik:
+    image: "traefik:v3.1"
+    container_name: "traefik"
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entryPoints.web.address=:80"
+    ports:
+      - "80:80"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT}
+    networks:
+      - traefik-net
+
